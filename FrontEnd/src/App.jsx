@@ -5,13 +5,15 @@ import AddExpense from "./components/AddExpenseForm";
 import Notification from "./components/Notification";
 import "./app.css";
 
-const ExpenseList = ({ expenselist }) => {
+const ExpenseList = ({ expenselist, onDelete }) => {
   return (
     <div>
       <h2>Transactions</h2>
       <ul>
         {expenselist.map((exp) => (
-          <li key={exp.id}>{exp.description}: ${exp.amount}</li>
+          <li key={exp.id}>{exp.description}: ${exp.amount}
+           <button onClick={() => onDelete(exp.id)}>Delete</button>
+          </li>
         ))}
       </ul>
     </div>
@@ -63,6 +65,28 @@ const App = () => {
         }, 5000);
       });
   };
+  const deleteExpense = (id) => {
+    expenseservice.remove(id)
+      .then(() => {
+        setExpense(expense.filter((exp) => exp.id !== id));
+        setNotification({
+          message: "Expense deleted successfully!",
+          type: "success",
+        });
+        setTimeout(() => {
+          setNotification({ message: null, type: null });
+        }, 5000);
+      })
+      .catch((error) => {
+        setNotification({
+          message: "Error deleting expense.",
+          type: "error",
+        });
+        setTimeout(() => {
+          setNotification({ message: null, type: null });
+        }, 5000);
+      });
+  };
 
   const padding = {
     margin: '5px',
@@ -95,7 +119,7 @@ const App = () => {
           </div>
         </div>
         <Routes>
-          <Route path="/" element={<ExpenseList expenselist={expense} />} />
+          <Route path="/" element={<ExpenseList expenselist={expense} onDelete={deleteExpense}/>} />
           <Route path="/Add" element={<AddExpense createExpense={addExpense} />} />
         </Routes>
       </Router>
