@@ -1,35 +1,80 @@
-.formDiv {
-    max-width: 400px;
-    margin: auto;
+/* app.css */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.formDiv h2 {
+.header {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.formDiv select,
-.formDiv input[type="text"],
-.formDiv input[type="date"],
-.formDiv textarea {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
+.header h1 {
+    color: #343a40;
+    font-size: 2.5rem;
 }
 
+.navbar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.navbar .links-container {
+    display: flex;
+    gap: 15px;
+}
+
+.navbar a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+.formDiv {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.formDiv h2 {
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+.formDiv form div {
+    margin-bottom: 15px;
+}
+
+.formDiv label {
+    display: block;
+    margin-bottom: 5px;
+    color: #495057;
+}
+
+.formDiv input,
+.formDiv select,
 .formDiv textarea {
-    height: 100px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 1rem;
 }
 
 .formDiv button {
-    width: 100%;
-    padding: 10px;
     background-color: #007bff;
-    color: white;
+    color: #ffffff;
+    padding: 10px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -39,23 +84,63 @@
     background-color: #0056b3;
 }
 
-/* Notification */
-.notification {
-    padding: 10px;
-    margin: 10px 0;
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.tabs button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #007bff;
+    cursor: pointer;
+    padding: 10px 20px;
     border-radius: 5px;
-    text-align: center;
-    font-size: 1.2em;
 }
 
-.success {
-    color: green;
-    background-color: #dff0d8;
-    border: 1px solid #d6e9c6;
+.tabs button.active {
+    background-color: #007bff;
+    color: #ffffff;
+    font-weight: bold;
 }
 
-.error {
-    color: red;
-    background-color: #f2dede;
-    border: 1px solid #ebccd1;
+.transaction-list {
+    margin-top: 20px;
+}
+
+.transaction-list h2 {
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+.transaction-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.transaction-item {
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-item div {
+    margin-bottom: 5px;
+}
+
+.transaction-item button {
+    background-color: #dc3545;
+    color: #ffffff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.transaction-item button:hover {
+    background-color: #c82333;
 }

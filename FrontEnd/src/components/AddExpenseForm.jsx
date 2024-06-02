@@ -1,43 +1,51 @@
 import { useState } from 'react';
 
-
-const AddExpenseForm  = ({ createExpense }) => {
+const AddExpenseForm = ({ createExpense }) => {
+    const [activeTab, setActiveTab] = useState('Expense');
     const [type, setType] = useState('');
     const [amount, setAmount] = useState('');
     const [category, setCategory] = useState('');
     const [date, setDate] = useState('');
     const [description, setDescription] = useState('');
 
-    const categories = ['Household', 'Food', 'Transportation', 'Social', 'Beauty'];
+    const expenseCategories = ['Household', 'Food', 'Transportation', 'Social Life', 'Health', 'Education', 'Beauty', 'Other'];
+    const incomeCategories = ['Salary', 'Bonus', 'Tips', 'Other'];
 
     const addExpense = (event) => {
         event.preventDefault();
         createExpense({
-            type: type,
+            type: activeTab, // Set type based on active tab
             amount: amount,
             category: category,
             date: date,
             description: description,
         });
-        setType('');
         setAmount('');
         setCategory('');
         setDate('');
         setDescription('');
     };
 
-    return(
+    const categories = activeTab === 'Expense' ? expenseCategories : incomeCategories;
+
+    return (
         <div className="formDiv">
             <h2>Add New Transaction</h2>
+            <div className="tabs">
+                <button
+                    className={activeTab === 'Expense' ? 'active' : ''}
+                    onClick={() => setActiveTab('Expense')}
+                >
+                    Expense
+                </button>
+                <button
+                    className={activeTab === 'Income' ? 'active' : ''}
+                    onClick={() => setActiveTab('Income')}
+                >
+                    Income
+                </button>
+            </div>
             <form onSubmit={addExpense}>
-            <div>
-                    <label>Type</label>
-                    <select value={type} onChange={(e) => setType(e.target.value)}>
-                        <option value="">Select type</option>
-                        <option value="Income">Income</option>
-                        <option value="Expense">Expense</option>
-                    </select>
-                </div>
                 <div>
                     <label>Amount</label>
                     <input
@@ -77,4 +85,5 @@ const AddExpenseForm  = ({ createExpense }) => {
         </div>
     );
 };
+
 export default AddExpenseForm;
