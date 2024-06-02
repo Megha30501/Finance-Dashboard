@@ -1,229 +1,56 @@
-/* app.css */
-/* .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-.header {
-  width: 100%;
-  text-align: left;
-}
 
-.header h1 {
-    color: #343a40;
-    font-size: 2rem;
-}
-
-.navbar {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.navbar .links-container {
-    display: flex;
-    gap: 15px;
-}
-
-.navbar a {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.navbar a:hover {
-    text-decoration: underline;
-}
-
-.formDiv {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.formDiv h2 {
-    color: #343a40;
-    margin-bottom: 20px;
-}
-
-.formDiv form div {
-    margin-bottom: 15px;
-}
-
-.formDiv label {
-    display: block;
-    margin-bottom: 5px;
-    color: #495057;
-}
-
-.formDiv input,
-.formDiv select,
-.formDiv textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-.formDiv button {
-    background-color: #007bff;
-    color: #ffffff;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.formDiv button:hover {
-    background-color: #0056b3;
-}
-
-.tabs {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
-}
-
-.tabs button {
-    background: none;
-    border: none;
-    font-size: 1.2rem;
-    color: #007bff;
-    cursor: pointer;
-    padding: 10px 20px;
-    border-radius: 5px;
-}
-
-.tabs button.active {
-    background-color: #007bff;
-    color: #ffffff;
-    font-weight: bold;
-}
-
-.transaction-list {
-    margin-top: 20px;
-}
-
-.transaction-list h2 {
-    color: #343a40;
-    margin-bottom: 20px;
-}
-
-.transaction-list ul {
-    list-style: none;
-    padding: 0;
-}
-
-.transaction-item {
-    background-color: #ffffff;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.transaction-item div {
-    margin-bottom: 5px;
-}
-
-.transaction-item button {
-    background-color: #dc3545;
-    color: #ffffff;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.transaction-item button:hover {
-    background-color: #c82333;
-} */
 .balance-summary-container {
     display: flex;
     justify-content: space-between;
   }
   
-  .navbar {
-    background-color: #333;
-    padding: 10px;
-  }
-  
-  .links-container {
-    display: flex;
-  }
-  
-  .links-container a {
-    color: #fff;
-    text-decoration: none;
-    margin-right: 20px;
-  }
-  
-  .links-container a:hover {
-    text-decoration: underline;
-  }
-  
-  .filter-sort-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  /* Add spacing between filter and sort elements */
-  .filter,
-  .sort {
-    margin-right: 10px;
-    justify-content: space-between;
+    .vertical-navbar {
+        width: 170px;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #6c72d7;
+    }
+    
+    .navbar {
+        padding-top: 20px;
+        color: #fff;
+    }
+    
+    .links-container {
+        justify-content: center;
+    }
+    
+    .links-container ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .links-container li {
+        margin-bottom: 10px;
+    }
+    
+    .links-container a {
+        display: block;
+        text-decoration: none;
+        color: #fff;
+        padding: 10px;
+        transition: background-color 0.3s ease;
+        font-family: Arial, sans-serif;
+    }
+    
+    .links-container a:hover {
+        background-color: #222457; 
+        color: #fff;
+    }
+    
+    .container {
+        margin-left: 200px;
+        padding: 20px;
+    }
+    
 
-  }
   
-  /* Optionally, you can add additional styling to the labels, inputs, and selects */
-  .filter label,
-  .sort label {
-    margin-right: 5px;
-  }
   
-  .filter input,
-  .sort select {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-  
-  .sort select {
-    width: 100px;
-  }
-  
- .filter-sort-container {
-  display: flex;
-  align-items: center;
-}
-
-.filter,
-.sort {
-  margin-right: 10px;
-}
-
-.filter label,
-.sort label {
-  margin-right: 5px;
-}
-
-.filter input,
-.sort select {
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-.sort select {
-  width: 100px;
-}
-
-.balance-container {
-  margin-bottom: 20px;
-}
-
-

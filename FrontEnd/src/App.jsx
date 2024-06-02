@@ -195,16 +195,20 @@ const App = () => {
     <>
       <Notification message={notification.message} type={notification.type} />
       <Router>
+        <div className="vertical-navbar">
+        <nav className="navbar">
+            <div className="links-container">
+            <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/Add">Add New Expense</Link></li>
+        </ul>
+            </div>
+          </nav>
+        </div>
         <div className="container">
           <header className="header">
             <h1>Expense Tracker</h1>
           </header>
-          <nav className="navbar">
-            <div className="links-container">
-              <Link to="/">Home</Link>
-              <Link to="/Add">Add New Expense</Link>
-            </div>
-          </nav>
           <Routes>
             <Route
               path="/"

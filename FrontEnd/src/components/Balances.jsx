@@ -19,7 +19,7 @@ const calculateTotals = (expense) => {
 
 const NetBalance = ({ netBalance }) => {
   const balanceStyle = {
-    color: netBalance < 0 ? "#ff0000" : "#1ea229" 
+    color: netBalance < 0 ? "#00008B" : "#007bff" 
   };
 
   const formattedBalance = netBalance < 0 ? `-$${Math.abs(netBalance)}` : `$${netBalance}`;

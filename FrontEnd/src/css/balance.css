@@ -2,48 +2,52 @@
 
 .balance-summary {
     margin-bottom: 20px;
-  }
+}
 
-  
-  .balance-box {
+.balance-box {
     flex: 1;
-    background-color: #fff;
+    background: linear-gradient(to bottom right, #7d82d7, #9ea1e6);
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin-right: 10px;
     text-align: center;
     margin-bottom: 20px;
-  }
-  
-  .balance-box:last-child {
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.balance-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.balance-box:last-child {
     margin-right: 0;
-  }
-  
-  .balance-box h3 {
+}
+
+.balance-box h3 {
     margin-bottom: 10px;
     font-size: 18px;
-    color: #333;
-  }
-  
-  .balance-box p {
+    color: #ffffff;
+}
+
+.balance-box p {
     font-size: 24px;
     font-weight: bold;
-    color: #1ea229;
-  }
-  .balance-box .expense {
-    color: #ff0000; /* Red color */
-  }
-  
-  /* Media Query */
-  @media (max-width: 767px) {
+    color: #fff;
+    margin-top: 5px;
+}
+
+
+/* Media Query */
+@media (max-width: 767px) {
     .balance-summary-container {
-      flex-direction: column;
+        flex-direction: column;
     }
-    
+
     .balance-box {
-      margin-right: 0;
-      margin-bottom: 10px;
+        margin-right: 0;
+        margin-bottom: 10px;
     }
-  }
-  
+}
