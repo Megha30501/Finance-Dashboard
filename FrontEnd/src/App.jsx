@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import expenseservice from "./services/expense";
 import Balances from "./components/Balances";
 import AddExpense from "./components/AddExpenseForm";
+import UpdateExpenseForm from "./components/UpdateExpenseForm";
 import Notification from "./components/Notification";
 import "./app.css";
 
-const ExpenseList = ({ expenselist, onDelete, showSummary }) => {
+const ExpenseList = ({ expenselist, onDelete, showSummary, onUpdate }) => {
   return (
     <div className="transaction-list">
       <h2>Transactions</h2>
@@ -17,13 +18,29 @@ const ExpenseList = ({ expenselist, onDelete, showSummary }) => {
         </div>
       )}
       <ul>
-        {expenselist.map((exp) => (
-          <li key={exp.id} className="transaction-item">
-            {exp.description}: ${exp.amount}
-            <button onClick={() => onDelete(exp.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+  {expenselist.map((exp) => (
+    <li key={exp.id} className="transaction-item">
+      <div>
+        <strong>Description:</strong> {exp.description}
+      </div>
+      <div>
+        <strong>Amount:</strong> ${exp.amount}
+      </div>
+      <div>
+        <strong>Type:</strong> {exp.type}
+      </div>
+      <div>
+        <strong>Category:</strong> {exp.category}
+      </div>
+      <div>
+        <strong>Date:</strong> {exp.date}
+      </div>
+      <button onClick={() => onDelete(exp.id)}>Delete</button>
+      <UpdateExpenseForm expense={exp} onUpdate={onUpdate} />
+    </li>
+  ))}
+</ul>
+
     </div>
   );
 };
@@ -97,6 +114,17 @@ const App = () => {
         }, 5000);
       });
   };
+  const updateExpense = (updatedExpense) => {
+    // Call the update service to update the expense in the backend
+    expenseservice.update(updatedExpense.id, updatedExpense)
+      .then((updatedExpense) => {
+        // Update the expense in the state
+        setExpense(expense.map(exp => (exp.id === updatedExpense.id ? updatedExpense : exp)));
+      })
+      .catch((error) => {
+        console.error("Error updating expense:", error);
+      });
+  };
   return (
     <>
       <Notification message={notification.message} type={notification.type} />
@@ -112,7 +140,7 @@ const App = () => {
             </div>
           </nav>
           <Routes>
-          <Route path="/" element={<ExpenseList expenselist={expense} onDelete={deleteExpense} showSummary={true} />} />
+          <Route path="/" element={<ExpenseList expenselist={expense} onDelete={deleteExpense} showSummary={true} onUpdate={updateExpense}/>} />
           <Route path="/Add" element={ <AddExpense createExpense={addExpense} />} />
           </Routes>
         </div>
