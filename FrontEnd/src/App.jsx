@@ -1,25 +1,32 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import expenseservice from "./services/expense";
+import Balances from "./components/Balances";
 import AddExpense from "./components/AddExpenseForm";
 import Notification from "./components/Notification";
 import "./app.css";
 
-const ExpenseList = ({ expenselist, onDelete }) => {
+const ExpenseList = ({ expenselist, onDelete, showSummary }) => {
   return (
-    <div>
+    <div className="transaction-list">
       <h2>Transactions</h2>
+      {showSummary && (
+        <div className="balance-container">
+          <h2>Summary</h2>
+          <Balances expense={expenselist} />
+        </div>
+      )}
       <ul>
         {expenselist.map((exp) => (
-          <li key={exp.id}>{exp.description}: ${exp.amount}
-           <button onClick={() => onDelete(exp.id)}>Delete</button>
+          <li key={exp.id} className="transaction-item">
+            {exp.description}: ${exp.amount}
+            <button onClick={() => onDelete(exp.id)}>Delete</button>
           </li>
         ))}
       </ul>
     </div>
   );
 };
-
 const App = () => {
   const [expense, setExpense] = useState([]);
   const [notification, setNotification] = useState({
@@ -65,6 +72,7 @@ const App = () => {
         }, 5000);
       });
   };
+
   const deleteExpense = (id) => {
     expenseservice.remove(id)
       .then(() => {
@@ -87,41 +95,26 @@ const App = () => {
         }, 5000);
       });
   };
-
-  const padding = {
-    margin: '5px',
-    padding: '30px 5px 10px 30px',
-    borderRadius: '5px',
-    transition: 'background-color 0.2s ease-in-out',
-    color: '#333',
-    textDecoration: 'none',
-    fontWeight: 'bold',
-  };
-
   return (
     <>
       <Notification message={notification.message} type={notification.type} />
       <Router>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <div>
-            <Link style={padding} to="/">
-              Home
-            </Link>
-            <Link style={padding} to="/Add">
-              Add New Expense
-            </Link>
-          </div>
+        <div className="container">
+        <header className="header">
+  <h1>Expense Tracker</h1>
+</header>
+          <nav className="navbar">
+          <div className="links-container">
+              <Link to="/">Home</Link>
+              <Link  to="/Add">Add New Expense</Link>
+            </div>
+          </nav>
+          <Routes>
+          <Route path="/" element={<ExpenseList expenselist={expense} onDelete={deleteExpense} showSummary={true} />} />
+<Route path="/Add" element={<ExpenseList expenselist={expense} onDelete={deleteExpense} showSummary={false} />} />
+
+          </Routes>
         </div>
-        <Routes>
-          <Route path="/" element={<ExpenseList expenselist={expense} onDelete={deleteExpense}/>} />
-          <Route path="/Add" element={<AddExpense createExpense={addExpense} />} />
-        </Routes>
       </Router>
     </>
   );
