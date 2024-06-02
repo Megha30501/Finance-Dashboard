@@ -3,11 +3,11 @@ import '../css/addexpenseform.css'
 
 const AddExpenseForm = ({ createExpense }) => {
     const [activeTab, setActiveTab] = useState('Expense');
-    const [type, setType] = useState('');
     const [amount, setAmount] = useState('');
     const [category, setCategory] = useState('');
     const [date, setDate] = useState('');
     const [description, setDescription] = useState('');
+    
 
     const expenseCategories = ['Household', 'Food', 'Transportation', 'Social Life', 'Health', 'Education', 'Beauty', 'Other'];
     const incomeCategories = ['Salary', 'Bonus', 'Tips', 'Other'];
@@ -33,22 +33,22 @@ const AddExpenseForm = ({ createExpense }) => {
         <div className="formDiv">
             <h2>Add New Transaction</h2>
             <div className="tabs">
-                <button
-                    className={activeTab === 'Expense' ? 'active' : ''}
-                    onClick={() => setActiveTab('Expense')}
-                >
-                    Expense
-                </button>
-                <button
-                    className={activeTab === 'Income' ? 'active' : ''}
-                    onClick={() => setActiveTab('Income')}
-                >
-                    Income
-                </button>
-            </div>
+  <button
+    className={`button ${activeTab === 'Expense' ? 'active' : ''}`}
+    onClick={() => setActiveTab('Expense')}
+  >
+    Expense
+  </button>
+  <button
+    className={`button ${activeTab === 'Income' ? 'active' : ''}`}
+    onClick={() => setActiveTab('Income')}
+  >
+    Income
+  </button>
+</div>
             <form onSubmit={addExpense}>
-                <div>
-                    <label>Amount</label>
+                <div className="input-group">
+    <label htmlFor="amount">Amount</label>
                     <input
                         type="numbers"
                         required = "true"
@@ -56,8 +56,8 @@ const AddExpenseForm = ({ createExpense }) => {
                         onChange={(e) => setAmount(e.target.value.replace('$', ''))}
                     />
                 </div>
-                <div>
-                    <label>Category</label>
+                <div className="input-group">
+    <label htmlFor="category">Category</label>
                     <select value={category} onChange={(e) => setCategory(e.target.value)}>
                         <option value="">Select category</option>
                         {categories.map((category) => (
@@ -65,22 +65,22 @@ const AddExpenseForm = ({ createExpense }) => {
                         ))}
                     </select>
                 </div>
-                <div>
-                    <label>Date</label>
+                <div className="input-group">
+    <label htmlFor="date">Date</label>
                     <input
                         type="date"
                         value={date}
                         onChange={(e) => setDate(e.target.value)}
                     />
                 </div>
-                <div>
-                    <label>Description</label>
+                <div className="input-group">
+    <label htmlFor="description">Description</label>
                     <textarea
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                     ></textarea>
                 </div>
-                <div>
+                <div className="input-group">
                     <button id="submit-button" type="submit">Add Transaction</button>
                 </div>
             </form>

@@ -194,17 +194,6 @@
   
   .sort select {
     width: 100px;
-  /* .transaction-list {
-    display: flex;
-  }
-  
-  .expense-list-container {
-    flex: 1;
-  }
-  
-  .pie-charts-container {
-    flex: 1;
-    margin-left: 20px; /* Adjust margin as needed */
   }
   
  .filter-sort-container {
