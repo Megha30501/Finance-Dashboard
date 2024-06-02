@@ -1,0 +1,57 @@
+/* Header and filter-sort container */
+.header-filter-sort-container {
+    display: flex;
+    align-items: center; /* Align items vertically */
+  }
+.header {
+    flex: 1; 
+  }
+  .header h1 {
+    margin: 0;
+    font-size: 1.5em; 
+  }
+  .header p {
+    margin: 5px 0 0 0;
+    font-size: 0.9em;
+    color: #3f3b3b; 
+    font-weight: normal;    
+  }
+  .header > div {
+    margin-bottom: 20px; /* Add margin between header and filter-sort container */
+  }
+  .filter-sort-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .filter-sort-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .filter,
+  .sort {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+  }
+ 
+  .filter label,
+  .sort label {
+    margin-right: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .cat-sort,
+  .value-sort {
+    margin-left: 10px;
+  }
+  
+  .filter input,
+  .sort select,
+  .value-sort select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
