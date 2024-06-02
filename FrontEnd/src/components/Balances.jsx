@@ -1,4 +1,4 @@
-// balances.jsx
+import '../css/balance.css'
 
 import React from "react";
 
@@ -18,10 +18,16 @@ const calculateTotals = (expense) => {
 };
 
 const NetBalance = ({ netBalance }) => {
+  const balanceStyle = {
+    color: netBalance < 0 ? "#ff0000" : "#1ea229" 
+  };
+
+  const formattedBalance = netBalance < 0 ? `-$${Math.abs(netBalance)}` : `$${netBalance}`;
+
   return (
     <div className="balance-box">
     <h3>Net Balance</h3>
-    <p>${netBalance}</p>
+    <p style={balanceStyle}>{formattedBalance}</p>
   </div>
   );
 };
@@ -39,7 +45,7 @@ const TotalExpenses = ({ totalExpenses }) => {
   return (
     <div className="balance-box">
     <h3>Total Expenses</h3>
-    <p>${totalExpenses}</p>
+    <p className="expense">${totalExpenses}</p>
   </div>
   );
 };

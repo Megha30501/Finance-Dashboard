@@ -7,7 +7,7 @@ import UpdateExpenseForm from "./components/UpdateExpenseForm";
 import Notification from "./components/Notification";
 import ExpensePieChart from "./components/ExpensePieChart";
 import IncomePieChart from "./components/IncomePieChart";
-import "./app.css";
+import './app.css'
 
 const ExpenseList = ({ expenselist, onDelete, showSummary, onUpdate }) => {
   const [filterCriteria, setFilterCriteria] = useState('');
@@ -41,63 +41,68 @@ const handleOrderChange = (event) => {
   setSortOrder(event.target.value);
 };
 
-  return (
-    <div className="transaction-list">
-      {showSummary && (
-        <div className="balance-container">
-          <h2 className="balance-summary">Summary</h2>
-          <div className="balance-summary">
-            <Balances expense={expenselist} />
+return (
+  <div className="transaction-list">
+    {showSummary && (
+      <div className="balance-container">
+        <div className="filter-sort-container">
+          <div className="filter">
+            <label htmlFor="filter">Filter by:</label>
+            <input type="text" value={filterCriteria} onChange={handleFilterChange} />
           </div>
-          <div className="expense-pie-chart">
-            <ExpensePieChart expenseList={expenselist} />
-          </div>
-          <div className="income-pie-chart">
-            <IncomePieChart expenseList={expenselist} />
+          <div className="sort">
+            <label htmlFor="sort">Sort by:</label>
+            <select id="sort" value={sortCriteria} onChange={handleSortChange}>
+              <option value="category">Category</option>
+              <option value="date">Date</option>
+            </select>
+            <select value={sortOrder} onChange={handleOrderChange}>
+              <option value="asc">Ascending</option>
+              <option value="desc">Descending</option>
+            </select>
           </div>
         </div>
-      )}
-         {/* Filtering and Sorting Controls */}
-      <div>
-        <label htmlFor="filter">Filter by:</label>
-        <input type="text" value={filterCriteria} onChange={handleFilterChange} />
+        <div className="balance-summary-container">
+          <Balances expense={expenselist} />
+        </div>
+        <div className="pie-charts-container">
+        <div className="expense-pie-chart">
+          <ExpensePieChart expenseList={expenselist} />
+        </div>
+        <div className="income-pie-chart">
+          <IncomePieChart expenseList={expenselist} />
+        </div>
+        </div>
       </div>
-      <div>
-        <label htmlFor="sort">Sort by:</label>
-        <select id="sort" value={sortCriteria} onChange={handleSortChange}>
-          <option value="category">Category</option>
-          <option value="date">Date</option>
-        </select>
-        <select value={sortOrder} onChange={handleOrderChange}>
-          <option value="asc">Ascending</option>
-          <option value="desc">Descending</option>
-        </select>
-      </div>
-      <ul>
-        {filteredExpenses.map((exp) => (
-          <li key={exp.id} className="transaction-item">
-            <div>
-              <strong>Description:</strong> {exp.description}
-            </div>
-            <div>
-              <strong>Amount:</strong> ${exp.amount}
-            </div>
-            <div>
-              <strong>Type:</strong> {exp.type}
-            </div>
-            <div>
-              <strong>Category:</strong> {exp.category}
-            </div>
-            <div>
-              <strong>Date:</strong> {exp.date}
-            </div>
-            <button onClick={() => onDelete(exp.id)}>Delete</button>
-            <UpdateExpenseForm expense={exp} onUpdate={onUpdate} />
-          </li>
-        ))}
-      </ul>
+    )}
+ <div className="expense-list-container">
+    <ul>
+      {filteredExpenses.map((exp) => (
+        <li key={exp.id} className="transaction-item">
+          <div>
+            <strong>Description:</strong> {exp.description}
+          </div>
+          <div>
+            <strong>Amount:</strong> ${exp.amount}
+          </div>
+          <div>
+            <strong>Type:</strong> {exp.type}
+          </div>
+          <div>
+            <strong>Category:</strong> {exp.category}
+          </div>
+          <div>
+            <strong>Date:</strong> {exp.date}
+          </div>
+          <button onClick={() => onDelete(exp.id)}>Delete</button>
+          <UpdateExpenseForm expense={exp} onUpdate={onUpdate} />
+        </li>
+      ))}
+    </ul>
+
     </div>
-  );
+  </div>
+);
 };
 
 const App = () => {

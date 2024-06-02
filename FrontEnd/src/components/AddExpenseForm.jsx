@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import '../css/addexpenseform.css'
 
 const AddExpenseForm = ({ createExpense }) => {
     const [activeTab, setActiveTab] = useState('Expense');
@@ -49,7 +50,8 @@ const AddExpenseForm = ({ createExpense }) => {
                 <div>
                     <label>Amount</label>
                     <input
-                        type="text"
+                        type="numbers"
+                        required = "true"
                         value={"$" + amount} // Include "$" sign in the input field value
                         onChange={(e) => setAmount(e.target.value.replace('$', ''))}
                     />
