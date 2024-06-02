@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import expenseservice from "./services/expense";
 import Balances from "./components/Balances";
@@ -10,19 +10,71 @@ import IncomePieChart from "./components/IncomePieChart";
 import "./app.css";
 
 const ExpenseList = ({ expenselist, onDelete, showSummary, onUpdate }) => {
+  const [filterCriteria, setFilterCriteria] = useState('');
+  const [sortCriteria, setSortCriteria] = useState('');
+  const [sortOrder, setSortOrder] = useState('');
+
+ // Sorting function
+ const sortedExpenses = expenselist.slice().sort((a, b) => {
+  if (sortCriteria === 'category') {
+    return sortOrder === 'asc' ? a.category.localeCompare(b.category) : b.category.localeCompare(a.category);
+  } else if (sortCriteria === 'date') {
+    return sortOrder === 'asc' ? new Date(a.date) - new Date(b.date) : new Date(b.date) - new Date(a.date);
+  }
+  return 0;
+});
+ // Filtering function
+ const filteredExpenses = sortedExpenses.filter(expense =>
+  expense.description.toLowerCase().includes(filterCriteria.toLowerCase()) ||
+  expense.type.toLowerCase().includes(filterCriteria.toLowerCase()) ||
+  expense.category.toLowerCase().includes(filterCriteria.toLowerCase())
+);
+const handleFilterChange = (event) => {
+  setFilterCriteria(event.target.value);
+}
+
+const handleSortChange = (event) => {
+  setSortCriteria(event.target.value);
+};
+
+const handleOrderChange = (event) => {
+  setSortOrder(event.target.value);
+};
+
   return (
     <div className="transaction-list">
-      <h2>Transactions</h2>
       {showSummary && (
         <div className="balance-container">
-          <h2>Summary</h2>
-          <Balances expense={expenselist} />
-          <ExpensePieChart expenseList={expenselist} />
-          <IncomePieChart expenseList={expenselist} />
+          <h2 className="balance-summary">Summary</h2>
+          <div className="balance-summary">
+            <Balances expense={expenselist} />
+          </div>
+          <div className="expense-pie-chart">
+            <ExpensePieChart expenseList={expenselist} />
+          </div>
+          <div className="income-pie-chart">
+            <IncomePieChart expenseList={expenselist} />
+          </div>
         </div>
       )}
+         {/* Filtering and Sorting Controls */}
+      <div>
+        <label htmlFor="filter">Filter by:</label>
+        <input type="text" value={filterCriteria} onChange={handleFilterChange} />
+      </div>
+      <div>
+        <label htmlFor="sort">Sort by:</label>
+        <select id="sort" value={sortCriteria} onChange={handleSortChange}>
+          <option value="category">Category</option>
+          <option value="date">Date</option>
+        </select>
+        <select value={sortOrder} onChange={handleOrderChange}>
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
+      </div>
       <ul>
-        {expenselist.map((exp) => (
+        {filteredExpenses.map((exp) => (
           <li key={exp.id} className="transaction-item">
             <div>
               <strong>Description:</strong> {exp.description}
