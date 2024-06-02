@@ -5,58 +5,11 @@ import Balances from "./components/Balances";
 import AddExpense from "./components/AddExpenseForm";
 import UpdateExpenseForm from "./components/UpdateExpenseForm";
 import Notification from "./components/Notification";
-import Chart from "chart.js/auto";
+import ExpensePieChart from "./components/ExpensePieChart";
+import IncomePieChart from "./components/IncomePieChart";
 import "./app.css";
 
 const ExpenseList = ({ expenselist, onDelete, showSummary, onUpdate }) => {
-  const expenseCategories = expenselist.reduce((acc, exp) => {
-    const category = exp.category;
-    acc[category] = (acc[category] || 0) + exp.amount;
-    return acc;
-  }, {});
-  const categoryLabels = Object.keys(expenseCategories);
-  const categoryData = Object.values(expenseCategories);
-
-  const chartConfig = {
-    type: "pie",
-    data: {
-      labels: categoryLabels,
-      datasets: [
-        {
-          label: "Expense Categories",
-          data: categoryData,
-          backgroundColor: [
-            "rgba(255, 99, 132, 0.2)",
-            "rgba(54, 162, 235, 0.2)",
-            "rgba(255, 206, 86, 0.2)",
-            "rgba(153, 102, 255, 0.2)",
-            "rgba(255, 159, 64, 0.2)",
-          ],
-          borderColor: [
-            "rgba(255, 99, 132, 1)",
-            "rgba(54, 162, 235, 1)",
-            "rgba(255, 206, 86, 1)",
-            "rgba(153, 102, 255, 1)",
-            "rgba(255, 159, 64, 1)",
-          ],
-          borderWidth: 1,
-        },
-      ],
-    },
-  };
-  useEffect(() => {
-    const ctx = document.getElementById("expenseChart").getContext("2d");
-    let chartInstance;
-    const cleanup = () => {
-      if (chartInstance) {
-        chartInstance.destroy();
-      }
-    };
-
-    chartInstance = new Chart(ctx, chartConfig);
-
-    return cleanup;
-  }, [expenselist]);
   return (
     <div className="transaction-list">
       <h2>Transactions</h2>
@@ -64,7 +17,8 @@ const ExpenseList = ({ expenselist, onDelete, showSummary, onUpdate }) => {
         <div className="balance-container">
           <h2>Summary</h2>
           <Balances expense={expenselist} />
-          <canvas id="expenseChart" width="400" height="200"></canvas>
+          <ExpensePieChart expenseList={expenselist} />
+          <IncomePieChart expenseList={expenselist} />
         </div>
       )}
       <ul>
