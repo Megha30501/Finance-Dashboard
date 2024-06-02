@@ -8,7 +8,7 @@ const AddExpenseForm  = ({ createExpense }) => {
     const [date, setDate] = useState('');
     const [description, setDescription] = useState('');
 
-
+    const categories = ['Household', 'Food', 'Transportation', 'Social', 'Beauty'];
 
     const addExpense = (event) => {
         event.preventDefault();
@@ -42,17 +42,18 @@ const AddExpenseForm  = ({ createExpense }) => {
                     <label>Amount</label>
                     <input
                         type="text"
-                        value={amount}
-                        onChange={(e) => setAmount(e.target.value)}
+                        value={"$" + amount} // Include "$" sign in the input field value
+                        onChange={(e) => setAmount(e.target.value.replace('$', ''))}
                     />
                 </div>
                 <div>
                     <label>Category</label>
-                    <input
-                        type="text"
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
-                    />
+                    <select value={category} onChange={(e) => setCategory(e.target.value)}>
+                        <option value="">Select category</option>
+                        {categories.map((category) => (
+                            <option key={category} value={category}>{category}</option>
+                        ))}
+                    </select>
                 </div>
                 <div>
                     <label>Date</label>

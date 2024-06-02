@@ -22,7 +22,7 @@
 }
 
 .formDiv textarea {
-    height: 100px; /* Adjust textarea height */
+    height: 100px;
 }
 
 .formDiv button {
@@ -37,4 +37,25 @@
 
 .formDiv button:hover {
     background-color: #0056b3;
+}
+
+/* Notification */
+.notification {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.success {
+    color: green;
+    background-color: #dff0d8;
+    border: 1px solid #d6e9c6;
+}
+
+.error {
+    color: red;
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
 }
