@@ -27,6 +27,8 @@ const ExpenseList = ({ expenselist, onDelete, showSummary }) => {
     </div>
   );
 };
+
+
 const App = () => {
   const [expense, setExpense] = useState([]);
   const [notification, setNotification] = useState({
@@ -104,15 +106,14 @@ const App = () => {
   <h1>Expense Tracker</h1>
 </header>
           <nav className="navbar">
-          <div className="links-container">
+            <div className="links-container">
               <Link to="/">Home</Link>
               <Link  to="/Add">Add New Expense</Link>
             </div>
           </nav>
           <Routes>
           <Route path="/" element={<ExpenseList expenselist={expense} onDelete={deleteExpense} showSummary={true} />} />
-<Route path="/Add" element={<ExpenseList expenselist={expense} onDelete={deleteExpense} showSummary={false} />} />
-
+          <Route path="/Add" element={ <AddExpense createExpense={addExpense} />} />
           </Routes>
         </div>
       </Router>
