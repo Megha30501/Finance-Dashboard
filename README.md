@@ -44,4 +44,3 @@ Make sure to run both at the same time.
 
 ## Dashboard Look
 ![image](https://github.com/Megha30501/Finance-Dashboard/assets/123281504/33617ad8-6875-422d-a7c8-159a6beda99d)
-
