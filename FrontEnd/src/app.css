@@ -2,6 +2,7 @@
 .balance-summary-container {
     display: flex;
     justify-content: space-between;
+    
   }
   
     .vertical-navbar {

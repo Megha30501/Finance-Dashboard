@@ -1,7 +1,7 @@
-/* Header and filter-sort container */
+
 .header-filter-sort-container {
     display: flex;
-    align-items: center; /* Align items vertically */
+    align-items: center; 
   }
 .header {
     flex: 1; 
@@ -17,8 +17,8 @@
     font-weight: normal;    
   }
   .header > div {
-    margin-bottom: 20px; /* Add margin between header and filter-sort container */
-  }
+    margin-bottom: 20px; 
+ }
   .filter-sort-container {
     display: flex;
     align-items: center;
@@ -54,4 +54,140 @@
     border-radius: 5px;
     border: 1px solid #ccc;
   }
+  .pie-chart-list-container {
+    display: flex;
+  }
+/* Container for the expense list and pie charts */
+.expense-list-container {
+    display: flex;
+  }
   
+  /* Style for the pie charts container */
+  .pie-charts-container {
+    width: 30%; /* Set width to take up half of the container */
+    padding-right: 20px; /* Add some spacing to the right */
+    box-sizing: border-box; /* Include padding in the width */
+  }
+  
+  /* Style for the list container */
+  .list-container {
+    width: 70%; /* Set width to take up half of the container */
+    padding-left: 20px; /* Add some spacing to the left */
+    flex: 1; /* Take up remaining space */
+    padding: 20px; /* Add padding for spacing */
+    background-color: #f0f0f0; /* Set background color */
+    border-radius: 8px; /* Add border radius for rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow for depth */
+  }
+  .list-container ul {
+    list-style: none; 
+    padding: 0;
+  }
+
+  .list-container .transaction-item {
+    display: flex; 
+    align-items: center;
+    margin-bottom: 20px; 
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 6px; 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); 
+  }
+.list-container .transaction-item div {
+    margin-right: 20px;
+  }
+  
+
+  .list-container .transaction-item button {
+    padding: 5px 10px; 
+    background-color: #6c72d7; 
+    color: #fff; 
+    border: none; 
+    border-radius: 4px;
+    cursor: pointer; 
+  }
+
+  .list-container .transaction-item button:hover {
+    background-color: #545bd8;
+  }
+  
+ 
+  .transaction-item button {
+    margin-top: 5px;
+  }
+  .dialog-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .dialog-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 400px;
+  }
+  
+  .dialog-header {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .dialog-header h2 { 
+    margin: 0;
+  }
+  
+  .close-button {
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 10px;
+    background: none;
+    color: #3f3b3b;
+  }
+  
+  .dialog-body {
+    padding: 20px;
+  }
+  
+  .dialog-footer {
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .dialog-footer button {
+    margin-left: 10px;
+  }
+  .pie-charts-container p 
+   {
+    margin: 5px 5px 5px 10px;
+    font-size: 0.9em;
+    color: #3f3b3b; 
+    font-weight: normal;    
+  }
+  @media (max-width: 768px) {
+    .expense-list-container {
+      flex-direction: column;
+    }
+  
+    .pie-charts-container,
+    .list-container {
+      width: 100%;
+      padding: 0 20px;
+    }
+  
+    .pie-charts-container {
+      margin-bottom: 20px;
+    }
+  }

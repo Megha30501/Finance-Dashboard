@@ -9,7 +9,7 @@ const ExpenseList = ({ expenselist, onDelete, showSummary, onUpdate }) => {
   const [filterCriteria, setFilterCriteria] = useState("");
   const [sortCriteria, setSortCriteria] = useState("");
   const [sortOrder, setSortOrder] = useState("");
-
+  const [selectedTransaction, setSelectedTransaction] = useState(null);
   // Sorting function
   const sortedExpenses = expenselist.slice().sort((a, b) => {
     if (sortCriteria === "category") {
@@ -45,7 +45,12 @@ const ExpenseList = ({ expenselist, onDelete, showSummary, onUpdate }) => {
   const handleOrderChange = (event) => {
     setSortOrder(event.target.value);
   };
-
+  const handleTransactionClick = (transaction) => {
+    setSelectedTransaction(transaction);
+  };
+  const handleClosePopup = () => {
+    setSelectedTransaction(null);
+  };
   return (
     <div className="transaction-list">
       {showSummary && (
@@ -90,41 +95,74 @@ const ExpenseList = ({ expenselist, onDelete, showSummary, onUpdate }) => {
           <div className="balance-summary-container">
             <Balances expense={expenselist} />
           </div>
-          <div className="pie-charts-container">
-            <div className="expense-pie-chart">
-              <ExpensePieChart expenseList={expenselist} />
-            </div>
-            <div className="income-pie-chart">
-              <IncomePieChart expenseList={expenselist} />
-            </div>
-          </div>
+          
         </div>
       )}
+      
       <div className="expense-list-container">
-        <ul>
-          {filteredExpenses.map((exp) => (
-            <li key={exp.id} className="transaction-item">
-              <div>
-                <strong>Description:</strong> {exp.description}
-              </div>
-              <div>
-                <strong>Amount:</strong> ${exp.amount}
-              </div>
-              <div>
-                <strong>Type:</strong> {exp.type}
-              </div>
-              <div>
-                <strong>Category:</strong> {exp.category}
-              </div>
-              <div>
-                <strong>Date:</strong> {exp.date}
-              </div>
-              <button onClick={() => onDelete(exp.id)}>Delete</button>
-              <UpdateExpenseForm expense={exp} onUpdate={onUpdate} />
-            </li>
-          ))}
-        </ul>
+  <div className="list-container">
+    <ul>
+      {filteredExpenses.map((exp) => (
+        <li key={exp.id} className="transaction-item">
+            <div>
+            {exp.category}
+          </div>
+          <div>
+         {exp.description}
+          </div>
+          <div>
+         ${exp.amount}
+          </div>
+          <button onClick={() => handleTransactionClick(exp)}>
+                  View
+                </button>
+        </li>
+      ))}
+    </ul>
+  </div>
+  <div className="pie-charts-container">
+
+    <div className="expense-pie-chart">
+    <p>Expense Pie Chart</p>
+      <ExpensePieChart expenseList={expenselist} />
+    </div>
+    <div className="income-pie-chart">
+    <p>Income Pie Chart</p>
+      <IncomePieChart expenseList={expenselist} />
+    </div>
+  </div>
+</div>
+      {selectedTransaction && (
+  <div className="dialog-box">
+    <div className="dialog-content">
+      <div className="dialog-header">
+        <h2>Transaction Details</h2>
+        <button onClick={handleClosePopup} className="close-button">X</button>
       </div>
+      <div className="dialog-body">
+        <div>
+          <strong>Description:</strong> {selectedTransaction.description}
+        </div>
+        <div>
+          <strong>Amount:</strong> ${selectedTransaction.amount}
+        </div>
+        <div>
+          <strong>Type:</strong> {selectedTransaction.type}
+        </div>
+        <div>
+          <strong>Category:</strong> {selectedTransaction.category}
+        </div>
+        <div>
+          <strong>Date:</strong> {selectedTransaction.date}
+        </div>
+      </div>
+      <div className="dialog-footer">
+        <button onClick={() => onDelete(selectedTransaction.id)}>Delete</button>
+        <UpdateExpenseForm expense={selectedTransaction} onUpdate={onUpdate} />
+      </div>
+    </div>
+  </div>
+)}
     </div>
   );
 };
